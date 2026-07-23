@@ -41,9 +41,9 @@ State machine navigation controller showing the finite state machine (`WAIT`, `F
 ### 5. Simulation Environments & World Models
 Custom Gazebo simulation world (`turtlebot3_house.world`) featuring dynamic human targets, aisle shelves, moving obstacle pedestrians, and 360° LiDAR range field-of-view overlays.
 
-| Supermarket World (Top-Down Aisle View) | Real World Demo | LiDAR FOV & Sector Scanning |
+| Supermarket World (Top-Down Aisle View) | Real World Demo | Waffle FOV |
 | :---: | :---: | :---: |
-| ![Gazebo Top Down](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/world.png) | ![Real World Demo](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/Demo.jpeg) | ![Gazebo LiDAR FOV](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image13.jpeg) |
+| ![Gazebo Top Down](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/world.png) | ![Real World Demo](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/Demo.jpeg) | ![Gazebo LiDAR FOV](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/waffle_View.png) |
 
 ---
 
@@ -272,5 +272,5 @@ If your workspace is not in `~/robot_follower_ws`, update the map reference path
 
 
 ### Thank You
-![Supermarket Diagnostic Dashboard](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/Dashboard.jpeg)
+![Supermarket Diagnostic Dashboard](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image4.png)
 Stay Tuned for future updates
