@@ -34,7 +34,7 @@ Detailed computer vision processing pipeline showing frame acquisition, YOLOv8 t
 ### 4. Behavior Tree Node Architecture
 State machine navigation controller showing the finite state machine (`WAIT`, `FOLLOW`, `AVOID`, `REROUTE`, `SEARCH`, `ACQUIRE`), velocity slew-rate limiting, vector potential field calculations, and motor command execution.
 
-![Behavior Tree State Machine](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/behavior tree node.png)
+![Behavior Tree State Machine](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/behavior_tree_node.png)
 
 ---
 
