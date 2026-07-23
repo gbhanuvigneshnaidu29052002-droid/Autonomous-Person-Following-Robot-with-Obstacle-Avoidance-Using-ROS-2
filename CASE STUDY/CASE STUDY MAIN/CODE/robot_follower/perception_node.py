@@ -203,7 +203,7 @@ class PerceptionNode(Node):
         super().__init__("perception_node")
 
         # ── Parameters ───────────────────────────────────────────────────────
-        self.declare_parameter("camera_topic",         "/camera/camera/color/image_raw")
+        self.declare_parameter("camera_topic",         "/camera/image_raw")
         self.declare_parameter("scan_topic",           "/scan")
         self.declare_parameter("camera_hfov",          1.047)
         self.declare_parameter("yolo_model_path",      "yolov8n.pt")
