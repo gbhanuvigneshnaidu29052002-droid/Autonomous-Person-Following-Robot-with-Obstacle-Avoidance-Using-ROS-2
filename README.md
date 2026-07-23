@@ -44,7 +44,7 @@ graph TD
     └── CASE STUDY MAIN
         ├── CODE                            # ROS 2 Package Source Code
         │   ├── launch                      # ROS 2 launch scripts
-        │   │   ├── supermarket_world.launch.py       # Gazebo launch wrapper
+        │   │   ├── turtlebot3_house.launch.py       # Gazebo launch wrapper
         │   │   └── supermarket_navigation.launch.py  # Navigation nodes launcher
         │   ├── robot_follower              # Main Python nodes package
         │   │   ├── __init__.py
@@ -52,9 +52,14 @@ graph TD
         │   │   ├── behavior_tree_node.py   # State machine & Potential Field avoidance
         │   │   └── manager_node.py         # Lifecycle manager node
         │   ├── params                      # YAML parameter configuration files
+        │   │   └── robot_follower_params.yaml
         │   ├── worlds                      # Gazebo simulation environments (.world)
+        │   │   └── turtlebot3_house.world
         │   ├── models                      # 3D models and meshes for shelves
+        │   │   └── mart_walls      
         │   ├── maps                        # Slam occupancy grid maps (.pgm, .yaml)
+        │   │   ├── my_new_map4.yaml
+        │   │   └── my_new_map4.pgm
         │   ├── package.xml                 # ROS 2 package dependencies manifest
         │   ├── setup.py                    # Ament python setup script
         │   └── supermarket_dashboard.py    # Tkinter telemetry diagnostic GUI
