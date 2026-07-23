@@ -249,7 +249,7 @@ By default, the simulation publishes raw camera frames on a different topic than
     self.declare_parameter("camera_topic", "/camera/camera/color/image_raw")
     ```
 
-### B. Hardware Actuation Limits & Tuning (OpenCR Protection)
+### B. Hardware Actuation Limits & Tuning ( OpenCR Protection )
 To prevent battery voltage drops on your physical mobile base, you can adjust the acceleration constraints.
 * **File to modify:** [behavior_tree_node.py](file:///home/ganeshna/robot_follower_ws/src/robot_follower/robot_follower/behavior_tree_node.py) (Lines 44-55)
 * **Constants:**
