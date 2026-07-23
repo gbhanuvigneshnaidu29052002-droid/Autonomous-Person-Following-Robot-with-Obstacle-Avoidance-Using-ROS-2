@@ -145,7 +145,7 @@ Launches the Waffle Pi robot inside the TurtleBot3 House simulation.
 ```bash
 export TURTLEBOT3_MODEL=waffle
 source /opt/ros/humble/setup.bash
-ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
+ros2 launch robot_follower turtlebot3_house.launch.py
 ```
 
 ### Terminal 2: Run the Vision Perception Node
