@@ -6,6 +6,54 @@ The system leverages a decoupled, distributed CPU-only architecture that splits 
 
 ---
 
+## 📸 Project Gallery & Visual Demonstrations
+
+### 1. Real World Deployment & Hardware Setup
+Below is the real-world physical deployment setup of the autonomous robot cart in a supermarket environment and the physical TurtleBot3 Waffle hardware stack equipped with an Intel RealSense RGB-D camera and 360° RPLidar.
+
+| Real-World Supermarket Deployment | Physical Hardware Platform (TurtleBot3 Waffle) |
+| :---: | :---: |
+| ![Real World Deployment](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/supermarket_robot_deployment.png) | ![Physical Hardware](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image8.jpeg) |
+
+---
+
+### 2. Overall Model Architecture
+System architecture overview detailing inter-node communications (`manager_node`, `perception_node`, `behavior_tree_node`, and `supermarket_dashboard`).
+
+![Overall Model Architecture](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image9.png)
+
+---
+
+### 3. Perception Node Architecture
+Detailed computer vision processing pipeline showing frame acquisition, YOLOv8 target detection, ByteTrack temporal association, 40-frame enrollment, OSNet Re-Identification (Re-ID), and LiDAR depth/bearing estimation.
+
+![Perception Node Pipeline](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image10.png)
+
+---
+
+### 4. Behavior Tree Node Architecture
+State machine navigation controller showing the finite state machine (`WAIT`, `FOLLOW`, `AVOID`, `REROUTE`, `SEARCH`, `ACQUIRE`), velocity slew-rate limiting, vector potential field calculations, and motor command execution.
+
+![Behavior Tree State Machine](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image11.png)
+
+---
+
+### 5. Simulation Environments & World Models
+Custom Gazebo simulation world (`turtlebot3_house.world`) featuring dynamic human targets, aisle shelves, moving obstacle pedestrians, and 360° LiDAR range field-of-view overlays.
+
+| Supermarket World (Top-Down Aisle View) | 3D Environment Layout | LiDAR FOV & Sector Scanning |
+| :---: | :---: | :---: |
+| ![Gazebo Top Down](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image6.png) | ![Gazebo 3D Layout](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image7.png) | ![Gazebo LiDAR FOV](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image13.jpeg) |
+
+---
+
+### 6. Telemetry & Diagnostic Dashboard
+Real-time diagnostic control dashboard (`supermarket_dashboard.py`) rendering live YOLO visual feeds, target tracking telemetry vectors, 180° front LiDAR radar maps, system state logs, and emergency override controls.
+
+![Supermarket Diagnostic Dashboard](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image12.jpeg)
+
+---
+
 ## 1. System Architecture
 
 The project consists of three core ROS 2 nodes coordinated via state machines and topic subscriptions:
