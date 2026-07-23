@@ -78,7 +78,7 @@ graph TD
 ```
 
 1. **`manager_node`**: Orchestrates the system setup sequence. It puts the perception engine into `TRAIN` mode, holds the robot base in a `WAIT` state for 5 seconds until calibration is complete, and publishes `START` to active navigation controllers once a biometric identity lock is established.
-2. **`perception_node`**: Intercepts camera frames to detect humans using **YOLOv8**, associates bounding boxes over time using **ByteTrack**, and enforces target locking via a **4-level Re-ID cascade** (ByteTrack temporal continuity $\rightarrow$ OSNet body appearance similarity $\ge 0.70$ $\rightarrow$ Torso HSV histogram Bhattacharyya similarity $\ge 0.50$ $\rightarrow$ spatial angle fallback $\pm 0.25\text{ rad}$).
+2. **`perception_node`**: Intercepts camera frames to detect humans using **YOLOv8**, associates bounding boxes over time using **ByteTrack**, and enforces target locking via a **4-level Re-ID cascade** (ByteTrack temporal continuity $\rightarrow$ OSNet body appearance similarity $\ge 0.52$ $\rightarrow$ Torso HSV histogram Bhattacharyya similarity $\ge 0.50$ $\rightarrow$ spatial angle fallback $\pm 0.25\text{ rad}$).
 3. **`behavior_tree_node`**: Processes target vectors and 360-degree LiDAR scan ranges at 10 Hz. Applies a **3rd-percentile range filter** to eliminate sensor noise, excludes the target's legs using a **distance-gated bearing cone**, and outputs velocity commands smoothed by an **acceleration slew-rate limiter** (capped at $\Delta v = 0.035\text{ m/s}$ and $\Delta \omega = 0.12\text{ rad/s}$ per tick) to prevent battery brownouts.
 
 ---
@@ -253,8 +253,8 @@ By default, the simulation publishes raw camera frames on a different topic than
 To prevent battery voltage drops on your physical mobile base, you can adjust the acceleration constraints.
 * **File to modify:** [behavior_tree_node.py](file:///home/ganeshna/robot_follower_ws/src/robot_follower/robot_follower/behavior_tree_node.py) (Lines 44-55)
 * **Constants:**
-  * `MAX_LIN` ($0.30\text{ m/s}$): Maximum forward speed.
-  * `MAX_ANG` ($0.95\text{ rad/s}$): Maximum turning rate.
+  * `MAX_LIN` ($0.22\text{ m/s}$): Maximum forward speed.
+  * `MAX_ANG` ($0.75\text{ rad/s}$): Maximum turning rate.
   * `MAX_LIN_ACC` ($0.035\text{ m/s}$ per tick): Safe linear acceleration limit.
   * `MAX_ANG_ACC` ($0.12\text{ rad/s}$ per tick): Safe angular acceleration limit.
 
