@@ -20,21 +20,21 @@ Below is the real-world physical deployment setup of the autonomous robot cart i
 ### 2. Overall Model Architecture
 System architecture overview detailing inter-node communications (`manager_node`, `perception_node`, `behavior_tree_node`, and `supermarket_dashboard`).
 
-![Overall Model Architecture](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image9.png)
+![Overall Model Architecture](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/Model_Architecture.png)
 
 ---
 
 ### 3. Perception Node Architecture
 Detailed computer vision processing pipeline showing frame acquisition, YOLOv8 target detection, ByteTrack temporal association, 40-frame enrollment, OSNet Re-Identification (Re-ID), and LiDAR depth/bearing estimation.
 
-![Perception Node Pipeline](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image10.png)
+![Perception Node Pipeline](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/perception node.png)
 
 ---
 
 ### 4. Behavior Tree Node Architecture
 State machine navigation controller showing the finite state machine (`WAIT`, `FOLLOW`, `AVOID`, `REROUTE`, `SEARCH`, `ACQUIRE`), velocity slew-rate limiting, vector potential field calculations, and motor command execution.
 
-![Behavior Tree State Machine](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image11.png)
+![Behavior Tree State Machine](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/behavior tree node.png)
 
 ---
 
