@@ -27,7 +27,7 @@ System architecture overview detailing inter-node communications (`manager_node`
 ### 3. Perception Node Architecture
 Detailed computer vision processing pipeline showing frame acquisition, YOLOv8 target detection, ByteTrack temporal association, 40-frame enrollment, OSNet Re-Identification (Re-ID), and LiDAR depth/bearing estimation.
 
-![Perception Node Pipeline](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/perception node.png)
+![Perception Node Pipeline](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/perception_node.png)
 
 ---
 
