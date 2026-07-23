@@ -271,6 +271,6 @@ If your workspace is not in `~/robot_follower_ws`, update the map reference path
 * **Parameter:** Update the `.pgm` and `.yaml` file path strings to point to your local maps directory.
 
 
-# Thank You
+#                                            THANK YOU
 ![Supermarket Diagnostic Dashboard](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image4.png)
-# Stay Tuned for future updates
+#                                  STAY TUNED FOR FUTURE UPDATES
