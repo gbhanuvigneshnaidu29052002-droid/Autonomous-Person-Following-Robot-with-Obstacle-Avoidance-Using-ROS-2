@@ -13,7 +13,7 @@ Below is the real-world physical deployment setup of the autonomous robot cart i
 
 | Real-World Supermarket Deployment | Physical Hardware Platform (TurtleBot3 Waffle) |
 | :---: | :---: |
-| ![Real World Deployment](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/supermarket_robot_deployment.png) | ![Physical Hardware](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image8.jpeg) |
+| ![Real World Deployment](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/supermarket_robot_deployment.png) | ![Physical Hardware](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/Real_waffle.jpeg) |
 
 ---
 
