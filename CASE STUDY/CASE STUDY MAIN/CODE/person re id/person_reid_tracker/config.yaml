@@ -1,0 +1,45 @@
+camera_index: 0
+frame_width: 416
+frame_height: 416
+window_name: Person ReID Tracker
+
+yolo_model: yolo11n-pose.pt
+detection_confidence: 0.55
+person_class_id: 0
+
+use_gpu: true
+use_pose: true
+use_face_reid: true
+use_body_reid: true
+
+track_high_thresh: 0.5
+track_low_thresh: 0.1
+new_track_thresh: 0.6
+track_buffer: 30
+match_thresh: 0.8
+frame_rate: 30
+
+face_model_name: buffalo_l
+face_det_size: 640
+face_match_threshold: 0.55
+face_strong_mismatch_threshold: 0.35
+face_reid_interval: 5
+
+body_reid_model: osnet_x0_5
+body_match_threshold: 0.92
+body_owner_create_threshold: 0.95
+body_owner_maintain_threshold: 0.75
+body_score_margin: 0.08
+body_reid_interval: 10
+
+require_face_to_create_owner: true
+identity_smoothing_frames: 5
+owner_confirm_frames: 5
+unknown_confirm_frames: 3
+
+owner_images_dir: data/owner
+embeddings_path: data/embeddings/owner_embeddings.npz
+debug_save_dir: data/debug_frames
+
+debug_log_identity_changes: true
+perf_log_interval: 30

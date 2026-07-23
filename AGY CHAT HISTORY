@@ -1,0 +1,49 @@
+### 1. How to Check Your History and Resume Chats
+
+  #### In the Antigravity CLI (agy)
+
+  • List conversations: You can find all conversation databases and logs stored in your user configuration directories:
+      • Database files: ~/.gemini/antigravity-cli/conversations/
+      • Chat logs/workspaces: brain
+  • Resume a specific conversation: Run the agy command with the --conversation flag and the Conversation ID:
+    agy --conversation <CONVERSATION_ID>
+
+  • Continue the most recent conversation: Run:
+    agy --continue
+
+
+  #### In the Antigravity 2.0 Desktop App
+
+  • Type @ in the chat box to trigger the mention menu, then select Previous Conversations to search and view your conversation history or link context directly.
+  ──────
+  ### 2. Your Conversations from July 17th
+
+  I searched your history for July 17th, 2026, and found two conversation sessions. You can resume either of them using the instructions above:
+
+  #### Option A: Main Robot Follower & Obstacle Avoidance Session (Recommended)
+
+  • Conversation ID: 71ed858e-0da5-4210-b816-458d102ef230
+  • Time: July 17, 10:40 AM – 3:53 PM
+  • Details: This session covered fixing target identification issues in the perception node, adjusting safety distances, implementing robust obstacle avoidance and rerouting, and designing a precise
+  scenario where the robot turns after 80cm when an obstacle is between the robot and a human.
+  • Resume command:
+    agy --conversation 71ed858e-0da5-4210-b816-458d102ef230
+
+  • Transcript Log: transcript.jsonl
+
+  #### Option B: Person Re-ID Code Reference Dump
+
+  • Conversation ID: 78f15b13-cf4e-4aec-8771-2d0c1142e56e
+  • Time: July 17, 3:24 PM – 3:30 PM
+  • Details: A short session dedicated to retrieving the full source code contents of the various Python tracking/re-identification files (such as person_reid.py, face_reid.py, etc.).
+  • Resume command:
+    agy --conversation 78f15b13-cf4e-4aec-8771-2d0c1142e56e
+
+  • Transcript Log: transcript.jsonl
+
+ How's the CLI experience so far? Help us improve:
+ [1] Good  [2] Fine  [3] Bad  [0] Skip
+
+? for shortcuts                                                                                                                                                                    Gemini 3.5 Flash · medium
+
+

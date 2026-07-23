@@ -1,0 +1,65 @@
+IEEE REPORT CONTENTS: 
+
+Abstract
+1. Introduction 
+A. State of the Art  
+B. Project Scope
+II. Problem Statement
+A. The Problem: Social Distance Awareness Robotics 
+B. Potential Application Areas  
+C. Limitations of Prior Approaches 
+D. Solution Overview
+III. Project Vision and Objectives 
+A. Overall Goal 
+B. Core Objectives
+C. Technical Components and Stack
+IV. Methodology 
+A. Complete System Pipeline 
+B. Perception Pipeline Architecture
+C. Behavior Tree Decision Framework
+D. Control Pipeline Architecture
+V. Perception Module: YOLOv8 Detection System 
+A. Detection Architecture and Fundamentals 
+B. Advantages for Robotics Applications 
+C. Detection Parameters and Performance Characteristics
+D. Output Processing and Bounding Box Handling 
+VI. Tracking Module: DeepSORT Multi-person Tracking System 
+A. DeepSORT Architecture and Components 
+B. Kalman Filter for Motion Prediction 
+C. Hungarian Algorithm for Optimal Assignment
+D. Appearance Feature Extraction and Reidentification 
+E. Tracking Performance and Validation 
+VII. Distance Estimation and Safety Logic 
+A. Vision-based Distance Estimation Methods 
+B. Safety Thresholds and State Machine 
+C. Distance Control Dynamics
+VIII. Autonomous Control System: Detailed Algorithm
+A. Complete Control Loop Algorithm
+IX. Simulation Development in Gazebo 
+A. Gazebo Simulation Environment Setup 
+B. Development Phases and Milestones 
+C. Simulation Results 
+X. Real-World Deployment and Field Testing 
+A. Hardware Deployment: TurtleBot3 Waffle Configuration 
+B. Real-World Deployment Challenges 
+C. Adaptations for Physical Deployment
+D. Real-World Testing Results and Validation 
+XI. Comparative Analysis: Simulation vs. Real-World Performance
+A. Performance Comparison Metrics 
+B. Validation of Development Approach 
+C. Key Performance Differences and Root Causes
+XII. Design Principles and Innovation
+A. Proactive Safety Philosophy
+B. Adaptability and Contextual Awareness
+C. User Comfort and Predictability
+D. System Reliability and Redundancy 
+XIII. Future Work and Extensions 
+A. Gesture Recognition and Hand Signal Interpretation 
+B. Multi-Person Tracking and Intelligent Target Selection 
+C. Collaborative Multi-Robot Systems
+D. Advanced Perception Enhancements
+XIV. Conclusions and Impact Assessment
+A. Key Achievements 
+B. Technical Contributions
+C. Applications and RealWorld Impact 
+XV. References

@@ -1,0 +1,146 @@
+Total Slides: 16
+
+==================================================
+SLIDE 1
+==================================================
+SLIDE TEXT:
+AUTONOMOUS  PERSON-FOLLOWING  ROBOT WITH OBSTACLE AVOIDANCE PRESENTED BY : GANESHNA BHAN U BADR CHAOUCH YADLA SHIVA YANNAM SAINADH 22529648  12504235  22538325   22569272
+
+SPEAKER NOTES:
+1.7.2013 "Before running code on the physical robot, we built a custom supermarket-style Gazebo environment. This world includes aisles, shelves, tables, and static furniture to test straight-line following. Simulating this environment was a critical first step; it allowed us to safely tune our LiDAR noise filters and control gains without risking collisions and damage to the physical hardware. It also enabled us to reliably reproduce specific test scenarios across different layouts." ‹#›
+
+==================================================
+SLIDE 2
+==================================================
+SLIDE TEXT:
+AGENDA 01 PROBLEM STATEMENT PROJECT OVERVIEW SIMULATION ENVIRONMENT HARDWARE SETUP SYSTEM ARCHITECTURE PERCEPTION MODULE BEHAVIOR & NAVIGATION MONITORING DASHBOARD SIMULATION DEMONSTRATION REAL ROBOT DEMONSTRATION EXPERIMENTAL RESULTS CHALLENGES & FUTURE WORK
+
+SPEAKER NOTES:
+1.7.2013 Our physical platform is the TurtleBot3 Waffle Pi, driven by an OpenCR motor controller and a Raspberry Pi 4 for onboard computation. Our perception relies on an Intel RealSense D435i RGB camera mounted on the front, which publishes to the camera image raw topic. For obstacle detection and depth, we use an RPLidar A1M8 360-degree LiDAR operating at 10 Hertz with a 12-meter range. Because the robot lacks a GPU, we ran our heavy perception models on a laptop CPU running Ubuntu 24.04 and ROS 2 Humble, while the behavior and motor nodes executed directly on the robot." ‹#›
+
+==================================================
+SLIDE 3
+==================================================
+SLIDE TEXT:
+PROBLEM STATEMENT 02 A MOBILE ROBOT SH OULD AUTONOMOUSLY: IDENTIFY A TARGET PERSON FOLLOW THE PERSON MAINTAIN A SAFE DISTANCE AVOID OBSTACLES DURING NAVIGATION PROBLEM: FOLLOW A SINGLE “OWNER” IN A SUPERMARKET-LIKE ENVIRONMENT WHILE AVOIDING    OBSTACLES AND RECOVERING FROM OCCLUSIONS.
+
+SPEAKER NOTES:
+1.7.2013 “This slide shows the overall ROS 2 system architecture. The RGB camera and 360-degree LiDAR send visual and distance information to the perception node. The perception node detects and tracks the selected person, then publishes the target information through the /tracked_target topic. This includes the target’s distance, angle, and tracking status—visible, occluded, or lost. The behavior tree node receives this target data, together with the LiDAR scan and robot odometry, and sends movement commands through /cmd_vel to the TurtleBot3 Waffle. The manager node controls the startup sequence: it waits for the system to initialize, sends the TRAIN command, waits until the target is visible, and then sends START. Finally, the dashboard monitors the camera, LiDAR, target status, robot state, odometry and logs, and also provides an emergency stop. So, in simple terms, perception determines who and where the target is, behavior decides what the robot should do, and the manager controls when the system begins.” ‹#›
+
+==================================================
+SLIDE 4
+==================================================
+SLIDE TEXT:
+ PROJECT OVERVIEW 03 A ROS 2 PERSON-FOLLOWING SYSTEM THA t  IDENTIFIES ONE PERSON, FOLLOWS SAFELY, AVOIDS OBSTACLES, AND RECOVERS THE TARGET AFTER OCCLUSION. TARGET PERCEPTION YOLO + BYTETRACK + RE-ID SAFE FOLLOWING CAMERA + 360° LIDAR RECOVERY BEHAVIOR REROUTE, SEARCH & REACQUIRE VALIDATION GAZEBO + REAL ROBOT
+
+SPEAKER NOTES:
+1.7.2013 “This slide explains the internal pipeline of the perception node. First, the RGB camera continuously sends images to the system. YOLO processes every image and detects all people visible in the scene. However, YOLO only detects the class ‘person’; it does not remember which person is our selected target. Therefore, we use ByteTrack. ByteTrack associates detections between consecutive video frames and assigns tracking IDs. This allows the system to follow the movement of each detected person over time. After that, we perform a 40-frame enrollment phase. During this phase, the selected person stands near the centre of the camera, and the system collects appearance information from multiple frames. Using 40 frames is more reliable than using only one image because the person may move, turn, or appear differently between frames. The stored appearance information is then used for re-identification, or Re-ID. Re-ID helps the system recognise the same selected person after an occlusion or after ByteTrack changes the person’s tracking ID. This prevents the robot from accidentally switching to another person. The target’s angle is estimated from their horizontal position in the camera image. If the person appears on the left, the robot needs to turn left; if they appear on the right, it turns right. The distance is mainly estimated using the LiDAR measurement in the direction of the detected person. Finally, the perception node publishes /tracked_target, containing target visibility, distance, angle and tracking information. It also publishes /yolo/debug_image, which is the camera image with bounding boxes and labels, allowing us to visually verify that detection and tracking are working correctly.” “The key difference is that YOLO detects people, ByteTrack follows detections between frames, and Re-ID confirms that the detected person is the same person we enrolled.” ‹#›
+
+==================================================
+SLIDE 5
+==================================================
+SLIDE TEXT:
+ SIMULATION ENVIRONMENT 04 TITLE: GAZEBO SUPERMARKET SIMULATION CONTENT: GAZEBO SUPERMARKET WORLD: CUSTOM SUPERMARKET-STYLE GAZEBO ENVIRONMENT WITH SHELVES, TABLES, AND STATIC FURNITURE. STRAIGHT-LINE FOLLOWING THROUGH AISLES. WHY SIMULATION FIRST? SAFELY TEST PERCEPTION AND BEHAVIOR TUNING (LIDAR NOISE FILTERS, CONTROL GAINS) BEFORE RISKING REAL HARDWARE COLLISIONS. REPRODUCE SCENARIOS AND MEASURE BEHAVIOR CONSISTENTLY ACROSS DIFFERENT LAYOUTS.
+
+SPEAKER NOTES:
+1.7.2013 "The Behavior node translates perception into physical action. We designed a state machine consisting of WAIT, FOLLOW, AVOID, REROUTE, SEARCH, and ACQUIRE states. When following, the robot uses a Proportional controller to smoothly adjust its linear and angular velocity to maintain distance. When an obstacle is detected, the robot smoothly transitions to the AVOID state. Here, we utilize a potential-field method that blends 70 percent obstacle repulsion with 30 percent target attraction, allowing the robot to steer around the blockage while maintaining its general heading toward the owner." ‹#›
+
+==================================================
+SLIDE 6
+==================================================
+SLIDE TEXT:
+HARDWARE SETUP CONTENT: ROBOT: TURTLEBOT3 WAFFLE PI WITH OPENCR MOTOR CONTROLLER AND RASPBERRY PI 4 ONBOARD COMPUTE. SENSORS: INTEL REALSENSE D435I RGB CAMERA (FRONT-MOUNTED) PUBLISHING /CAMERA/CAMERA/COLOR/IMAGE_RAW RPLIDAR A1M8 360° LIDAR (10 HZ, ~12 M RANGE) PUBLISHING /SCAN SYSTEM: UBUNTU 24.04 (LAPTOP SIDE) + ROS 2 HUMBLE HAWKSBILL. PERCEPTION RUNS ON THE LAPTOP CPU; BEHAVIOR AND MOTORS RUN ON THE ROBOT. 05
+
+SPEAKER NOTES:
+1.7.2013 "To safely orchestrate the system, we built a premium telemetry dashboard using Tkinter in Python. This UI provides real-time insights, including the robot's current behavior state, target distance, velocity vectors, and Re-ID similarity scores. It visualizes the YOLO tracking feed and renders a 180-degree forward LiDAR radar so we can see exactly what the robot sees. Most importantly, it features an emergency stop button that immediately zeroes out the motor velocities, and simulation controls to dynamically spawn or clear obstacles in Gazebo." ‹#›
+
+==================================================
+SLIDE 7
+==================================================
+SLIDE TEXT:
+SYSTEM ARCHITECTURE 06
+
+SPEAKER NOTES:
+1.7.2013 “This simulation demonstration shows the system in two different scenarios.” “Here, the TurtleBot follows the selected person. When a dynamic obstacle appears, the LiDAR detects it, the behavior changes to AVOID, and the robot moves around the obstacle before continuing to follow.” “In this scenario, the robot follows the person while avoiding static obstacles. When the target is lost from the camera view, the robot switches to SEARCH and rotates to locate the person again.” “These demonstrations validate person tracking, obstacle avoidance, and target-loss recovery in the Gazebo environment.” ‹#›
+
+==================================================
+SLIDE 8
+==================================================
+SLIDE TEXT:
+PERCEPTION MODULE 07
+
+SPEAKER NOTES:
+1.7.2013 “This final demonstration shows the real robot on the left and the monitoring dashboard on the right. On the left, the TurtleBot follows our colleague Shiva using the camera and LiDAR. On the right, the dashboard shows the current behavior state in real time. During normal tracking, the state is FOLLOW. When an obstacle is detected, it changes to AVOID. If the target is temporarily lost, the robot can switch to REROUTE and move toward the last known target position using odometry. This demonstration shows that the perception, behavior control, obstacle avoidance, and dashboard monitoring are all working together on the real robot.” ‹#›
+
+==================================================
+SLIDE 9
+==================================================
+SLIDE TEXT:
+BEHAVIOR AND NAVIGATION 08
+
+SPEAKER NOTES:
+1.7.2013 "Our experimental parameters yielded excellent results. The system maintained a stable 10 Hertz control frequency. We successfully utilized a 40-frame target enrollment period to establish the Re-ID fingerprint, allowing the robot to comfortably maintain our desired 0.85-meter follow distance. During our specific 1-meter line scenario, where an obstacle blocked the path to the human, the robot successfully detected the obstacle at the 0.85-meter warning distance, automatically selected the clearest path, bypassed it, and reacquired the target." ‹#›
+
+==================================================
+SLIDE 10
+==================================================
+SLIDE TEXT:
+MONITORING DASHBOARD 09
+
+SPEAKER NOTES:
+1.7.2013 "Deploying this system introduced several engineering challenges. Dynamic obstacles and occlusions in cluttered environments frequently tested our tracking logic. Furthermore, lighting variations heavily impacted the camera-based detection and our HSV color histograms. Hardware limitations were also a major factor; without a GPU, we had to heavily optimize our deep learning models for CPU inference. Finally, we had to overcome hardware-specific hurdles, such as QoS mismatches dropping our LiDAR data and the aforementioned motor brownouts during sharp maneuvers." ‹#›
+
+==================================================
+SLIDE 11
+==================================================
+SLIDE TEXT:
+10 SIMULATION DEMONSTRATION IN GAZEBO
+
+SPEAKER NOTES:
+1.7.2013 "For future iterations, we want to upgrade the system to handle multi-person tracking and prioritization, enabling the robot to distinctly differentiate the owner from other moving individuals. We also plan to integrate a stronger OSNet Re-ID model, ideally utilizing a GPU or highly optimized CPU backends. Ultimately, we aim to fully integrate the Nav2 stack with global costmaps and semantic mapping, allowing the robot to execute advanced path replanning around dense crowds rather than relying purely on localized reactive behaviors." ‹#›
+
+==================================================
+SLIDE 12
+==================================================
+SLIDE TEXT:
+REAL ROBOT DEMONSTRATION 11
+
+SPEAKER NOTES:
+1.7.2013 "In conclusion, we successfully designed and implemented an autonomous person-following robot capable of dynamic obstacle avoidance and target re-identification. By combining deep learning perception with reactive state-machine control, we built a robust system capable of operating safely on physical hardware. Thank you for your time and attention." ‹#›
+
+==================================================
+SLIDE 13
+==================================================
+SLIDE TEXT:
+EXPERIMENTAL RESULTS AND PARAMETERS  OF THE REAL ROBOT 12 SUCCESSFUL PERSON F OLLOWING ON TURTLEBOT3 WAFFLE PI USING CAMERA + LIDAR FUSION. SUCCESSFUL OBSTACLE BYPASS IN THE SPECIFIC 1 M LINE SCENARIO WITH AUTOMATIC SIDE SELECTION AND TIMED FORWARD MOTION. DASHBOARD PROVIDED CONTINUOUS MONITORING AND EMERGENCY STOP CAPABILITY.
+
+SPEAKER NOTES:
+[No Speaker Notes Found]
+
+==================================================
+SLIDE 14
+==================================================
+SLIDE TEXT:
+13 CHALLENGES : DYNAMIC OBSTACLES AND OCCLUSIONS IN CLUTTERED ENVIRONMENTS. LIGHTING VARIATIONS AFFECTING CAMERA-BASED DETECTION AND HSV LIMITED ONBOARD COMPUTING (NO GPU) REQUIRING EFFICIENT MODELS AND CAREFUL CPU USAGE. HARDWARE ISSUES SUCH AS LIDAR QOS MISMATCHES AND MOTOR BROWNOUTS DURING AGGRESSIVE MANEUVERS
+
+SPEAKER NOTES:
+[No Speaker Notes Found]
+
+==================================================
+SLIDE 15
+==================================================
+SLIDE TEXT:
+FUTURE WORK: 14 MULTI-PERSON TRACKING AND PRIORITISATION (E.G., OWNER VS OTHER PEOPLE). STRONGER RE-ID USING OSNET ON GPU OR OPTIMISED CPU IMPLEMENTATIONS. FULL NAV2 INTEGRATION WITH GLOBAL COSTMAPS AND SEMANTIC MAPPING OF THE ENVIRONMENT. FASTER PLANNING AND MORE ADVANCED RECOVERY BEHAVIOURS (E.G., PATH REPLANNING AROUND CROWDS).
+
+SPEAKER NOTES:
+[No Speaker Notes Found]
+
+==================================================
+SLIDE 16
+==================================================
+SLIDE TEXT:
+15  CONCLUSION
+
+SPEAKER NOTES:
+[No Speaker Notes Found]
+

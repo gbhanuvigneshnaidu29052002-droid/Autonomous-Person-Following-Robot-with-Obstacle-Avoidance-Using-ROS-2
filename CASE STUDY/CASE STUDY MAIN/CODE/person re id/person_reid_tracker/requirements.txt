@@ -1,0 +1,23 @@
+# Core
+numpy>=1.24.0
+opencv-python>=4.8.0
+PyYAML>=6.0
+scipy>=1.11.0
+
+# Detection & pose
+ultralytics>=8.0.0
+torch>=2.0.0
+torchvision>=0.15.0
+
+# ByteTrack matching (lapx is easier to install on Windows than lap)
+lapx>=0.5.5
+
+# Face ReID (optional – install if you want InsightFace)
+# insightface>=0.7.3
+# onnxruntime>=1.16.0
+
+# Face ReID fallback (optional)
+# face_recognition>=1.3.0
+
+# Body ReID (optional – OSNet via torchreid)
+# torchreid>=0.2.5

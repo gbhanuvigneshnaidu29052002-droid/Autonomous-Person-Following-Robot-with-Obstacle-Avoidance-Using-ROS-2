@@ -1,0 +1,51 @@
+# robot_follower_params.yaml
+# Configuration parameters for both Gazebo simulation and Real TurtleBot3 Waffle.
+# Pass to nodes via: ros2 run robot_follower perception_node --ros-args --params-file params/robot_follower_params.yaml
+
+perception_node:
+  ros__parameters:
+    # --- Camera Configuration ---
+    # Gazebo simulation topic: /camera/image_raw
+    # Real TurtleBot3 (Pi Camera): /camera/image_raw
+    # Real TurtleBot3 (RealSense D435): /camera/color/image_raw
+    camera_topic: "/camera/image_raw"
+
+    # LiDAR scan topic (same for both Gazebo and real robot)
+    scan_topic: "/scan"
+
+    # Camera horizontal field of view in radians
+    # TurtleBot3 Waffle Pi Camera: ~62 degrees = 1.082 rad
+    # Intel RealSense D435i (640x480 @ 69 deg): 1.204 rad
+    # Gazebo default camera: 60 degrees = 1.047 rad
+    camera_hfov: 1.047
+
+    # Path to YOLO model weights file
+    yolo_model_path: "yolov8n.pt"
+
+    # Re-ID Bhattacharyya distance threshold (0.0-1.0)
+    # Lower = stricter matching (fewer false positives, more ID switches)
+    # Higher = looser matching (more false positives, fewer switches)
+    reid_threshold: 0.70
+
+    # Use simulation time (set false for real robot)
+    use_sim_time: true
+
+behavior_tree_node:
+  ros__parameters:
+    # Safe following distance in meters (maintains both legs in camera FOV)
+    safe_distance: 1.40
+
+    # Emergency stop threshold (Layer 2 backup trigger)
+    min_front_dist: 0.35
+
+    # Reactive steering threshold (Layer 1 overlay trigger)
+    avoid_dist: 0.55
+
+    # Search timeout durations (seconds)
+    search_go_to_last_duration: 4.0
+    search_spin_duration: 18.0
+    nav2_reroute_timeout: 30.0
+    search_wait_reid_duration: 150.0
+
+    # Use simulation time (set false for real robot)
+    use_sim_time: true

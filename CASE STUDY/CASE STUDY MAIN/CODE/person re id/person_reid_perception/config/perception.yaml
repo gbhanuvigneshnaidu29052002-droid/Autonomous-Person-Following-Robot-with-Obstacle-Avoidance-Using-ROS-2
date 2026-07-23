@@ -1,0 +1,90 @@
+# Person ReID Perception ROS 2 Node configuration
+#
+# This file mirrors person_reid_tracker/config.yaml and adds the keys
+# consumed by person_reid_perception (image preprocessing, ROS topics,
+# visualization). Drop-in values match the existing tracker's defaults.
+
+# ---- Camera / image source ----
+camera_index: 0
+frame_width: 416
+frame_height: 416
+window_name: Person ReID Tracker
+
+# ---- Detection / pose ----
+yolo_model: yolo11n-pose.pt
+detection_confidence: 0.55
+person_class_id: 0
+use_gpu: true
+use_pose: true
+use_face_reid: true
+use_body_reid: true
+
+# ---- ByteTrack ----
+track_high_thresh: 0.5
+track_low_thresh: 0.1
+new_track_thresh: 0.6
+track_buffer: 30
+match_thresh: 0.8
+frame_rate: 30
+
+# ---- Face ReID ----
+face_model_name: buffalo_l
+face_det_size: 640
+face_match_threshold: 0.55
+face_strong_mismatch_threshold: 0.35
+face_reid_interval: 5
+
+# ---- Body ReID ----
+body_reid_model: osnet_x0_5
+body_match_threshold: 0.92
+body_owner_create_threshold: 0.95
+body_owner_maintain_threshold: 0.75
+body_score_margin: 0.08
+body_reid_interval: 10
+
+# ---- Identity fusion ----
+require_face_to_create_owner: true
+identity_smoothing_frames: 5
+owner_confirm_frames: 5
+unknown_confirm_frames: 3
+
+# ---- Paths ----
+owner_images_dir: data/owner
+embeddings_path: data/embeddings/owner_embeddings.npz
+debug_save_dir: data/debug_frames
+
+# ---- Logging / perf ----
+debug_log_identity_changes: true
+perf_log_interval: 30
+
+# ---- ROS 2 wrapper: topics ----
+image_topic: /camera/camera/color/image_raw
+scan_topic: /scan
+debug_image_topic: /yolo/debug_image
+target_topic: /tracked_target
+identity_topic: /person_reid/identity
+status_topic: /person_reid/status
+frame_id: camera_optical_frame
+target_fps: 5.0
+
+# ---- ROS 2 wrapper: image preprocessing (sensor noise filter) ----
+enable_image_preprocessing: true
+enable_resize: true
+target_width: 416
+target_height: 416
+enable_bilateral: true
+bilateral_d: 5
+bilateral_sigma_color: 50.0
+bilateral_sigma_space: 50.0
+enable_clahe: true
+clahe_clip: 2.0
+clahe_tile: 8
+horizontal_fov_rad: 1.39626
+image_width_hint: 640
+
+# ---- Visualization (consumed by draw_tracks) ----
+show_pose: true
+show_track_id: true
+show_fps: true
+bbox_color_owner: [0, 255, 0]
+bbox_color_unknown: [0, 165, 255]

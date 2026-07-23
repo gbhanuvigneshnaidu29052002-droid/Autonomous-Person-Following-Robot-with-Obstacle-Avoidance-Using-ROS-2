@@ -1,0 +1,34 @@
+# robot_follower_params_real.yaml
+# Configuration for REAL TurtleBot3 Waffle deployment.
+# Use: ros2 launch robot_follower real_robot.launch.py
+
+perception_node:
+  ros__parameters:
+    # --- Real TurtleBot3 Waffle Camera ---
+    # Option A: Raspberry Pi Camera V2 (built-in)
+    camera_topic: "/camera/image_raw"
+    camera_hfov: 1.082   # Pi Camera V2 HFoV = ~62 degrees
+
+    # Option B: Intel RealSense D435i (plug in USB)
+    # camera_topic: "/camera/color/image_raw"
+    # camera_hfov: 1.204  # RealSense 69 deg horizontal
+
+    scan_topic: "/scan"
+    yolo_model_path: "yolov8n.pt"
+    reid_threshold: 0.65   # Slightly stricter for real-world noise
+
+    # IMPORTANT: Must be false on real robot!
+    use_sim_time: false
+
+behavior_tree_node:
+  ros__parameters:
+    safe_distance: 1.40
+    min_front_dist: 0.40   # Slightly higher clearance on real robot
+    avoid_dist: 0.60
+    search_go_to_last_duration: 4.0
+    search_spin_duration: 18.0
+    nav2_reroute_timeout: 45.0   # Real Nav2 may be slower
+    search_wait_reid_duration: 150.0
+
+    # IMPORTANT: Must be false on real robot!
+    use_sim_time: false
