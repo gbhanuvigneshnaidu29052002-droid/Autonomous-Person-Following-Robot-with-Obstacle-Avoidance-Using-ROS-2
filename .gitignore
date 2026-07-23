@@ -33,7 +33,7 @@ colcon_*.meta
 
 # System
 .DS_Store
-.gemini/
+
 
 # Large media
 *.mp4
