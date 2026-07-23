@@ -74,7 +74,7 @@ graph TD
             ├── RRLC M.mp4                 # Target re-acquisition video
             └── SIM + DASH.mp4              # Dashboard simulation interface video
 ```
-
+CASE STUDY/CASE STUDY MAIN/IMAGES/presentation1_media/Dashboard.jpeg
 ---
 
 ## 3. System Requirements & Dependencies
