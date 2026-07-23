@@ -269,3 +269,8 @@ If you find the Re-ID target lock is too strict (e.g. losing track of the owner 
 If your workspace is not in `~/robot_follower_ws`, update the map reference paths in the dashboard and launch files.
 * **File to modify:** `supermarket_dashboard.py` (Line 38)
 * **Parameter:** Update the `.pgm` and `.yaml` file path strings to point to your local maps directory.
+
+
+### Thank You
+![Supermarket Diagnostic Dashboard](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/Dashboard.jpeg)
+Stay Tuned for future updates
