@@ -270,6 +270,180 @@ If your workspace is not in `~/robot_follower_ws`, update the map reference path
 * **File to modify:** `supermarket_dashboard.py` (Line 38)
 * **Parameter:** Update the `.pgm` and `.yaml` file path strings to point to your local maps directory.
 
+# Installation and Usage
+
+## System Requirements
+
+- Ubuntu 22.04 LTS
+- ROS 2 Humble Hawksbill
+- Python 3.10
+- TurtleBot3 Waffle Pi
+- Intel RealSense D435i
+- RPLidar A1M8
+- Git
+- colcon
+
+---
+
+## Clone the Repository
+
+```bash
+git clone https://github.com/<your-username>/Autonomous-Person-Following-Robot-with-Obstacle-Avoidance-Using-ROS-2.git
+
+cd Autonomous-Person-Following-Robot-with-Obstacle-Avoidance-Using-ROS-2
+```
+
+---
+
+## Build the Workspace
+
+```bash
+colcon build --symlink-install
+source install/setup.bash
+```
+
+It is recommended to source the workspace in every new terminal:
+
+```bash
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+```
+
+---
+
+# Running on the Physical Robot
+
+## Terminal 1 – Launch TurtleBot3
+
+```bash
+source /opt/ros/humble/setup.bash
+
+ros2 launch turtlebot3_bringup robot.launch.py
+```
+
+---
+
+## Terminal 2 – Launch Intel RealSense Camera
+
+```bash
+source /opt/ros/humble/setup.bash
+
+ros2 launch realsense2_camera rs_launch.py \
+    enable_color:=true \
+    enable_depth:=true \
+    rgb_camera.color_profile:=640x480x15 \
+    rgb_camera.color_format:=RGB8 \
+    depth_module.depth_profile:=640x480x15 \
+    enable_sync:=false \
+    align_depth.enable:=false \
+    pointcloud.enable:=false
+```
+
+---
+
+## Terminal 3 – Start the Perception Node
+
+```bash
+cd ~/robot_follower_ws
+
+source ~/robot_follower_venv/bin/activate
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+
+export CUDA_VISIBLE_DEVICES=""
+
+ros2 run robot_follower perception_node
+```
+
+---
+
+## Terminal 4 – Start the Behavior Tree
+
+```bash
+cd ~/robot_follower_ws
+
+source ~/robot_follower_venv/bin/activate
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+
+ros2 run robot_follower behavior_tree_node
+```
+
+---
+
+## Terminal 5 – Start the Manager Node
+
+```bash
+cd ~/robot_follower_ws
+
+source ~/robot_follower_venv/bin/activate
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+
+ros2 run robot_follower manager_node
+```
+
+---
+
+## Terminal 6 – Launch the Monitoring Dashboard
+
+```bash
+cd ~/robot_follower_ws
+
+source ~/robot_follower_venv/bin/activate
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+
+python3 supermarket_dashboard.py
+```
+
+---
+
+# Running the Gazebo Simulation
+
+## Terminal 1
+
+```bash
+cd ~/robot_follower_ws
+
+source ~/robot_follower_venv/bin/activate
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+
+export TURTLEBOT3_MODEL=waffle
+
+ros2 launch robot_follower turtlebot3_house.launch.py
+```
+
+Then launch:
+
+- perception_node
+- behavior_tree_node
+- manager_node
+- supermarket_dashboard
+
+using the same commands shown above.
+
+---
+
+# Optional Debugging
+
+Display the raw camera stream:
+
+```bash
+source /opt/ros/humble/setup.bash
+
+ros2 run image_view image_view --ros-args -r image:=/camera/image_raw
+```
+
+Display the YOLO detection output:
+
+```bash
+source /opt/ros/humble/setup.bash
+
+ros2 run image_view image_view --ros-args -r image:=/yolo/debug_image
+```
+
 
 # THANK YOU
 ![Supermarket Diagnostic Dashboard](CASE%20STUDY/CASE%20STUDY%20MAIN/IMAGES/presentation1_media/image4.png)
